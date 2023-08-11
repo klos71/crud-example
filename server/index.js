@@ -3,26 +3,29 @@ var cors = require("cors");
 
 const app = express();
 const port = 8080;
+app.use(express.json());
 app.use(cors());
 
-//Get all the todo items
 app.get("/", (req, res) => {
-  res.json(true);
+  res.json({ title: "This is some JSON data" });
 });
 
-//Create a new todo item and return the ID to the client (body: todo-item) return id for todo item
+app.get("/", (req, res) => {
+  res.json([{ title: "This is some JSON data" }]);
+});
+
 app.post("/", (req, res) => {
-  res.json(true);
+  const { body } = req.body;
+  res.json({ title: "Hello from POST", body });
 });
 
-//Update a exisitng todo item (param: id, body: todo-item) return sucess
 app.put("/", (req, res) => {
-  res.json(true);
+  const { body } = req.body;
+  res.json({ title: "Hello from PUT", body });
 });
 
-//Delete a todo item (param: id)
-app.delete("/", (req, res) => {
-  res.json(true);
+app.delete("/:id", (req, res) => {
+  res.json({ title: "Delete", id });
 });
 
 app.listen(port, () => {
