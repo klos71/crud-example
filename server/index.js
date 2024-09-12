@@ -13,7 +13,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:id", (req, res) => {
-  const item = items.find((i) => i.id === req.params.id);
+  const item = items.find((i) => i.id == req.params.id);
+
   if (item) {
     res.json(item);
   } else {
@@ -41,7 +42,7 @@ app.put("/:id", (req, res) => {
 });
 
 app.delete("/:id", (req, res) => {
-  const index = items.find((i) => i.id === req.params.id);
+  const index = items.findIndex((i) => i.id == req.params.id);
   items.splice(index, 1);
   res.json(items);
 });
