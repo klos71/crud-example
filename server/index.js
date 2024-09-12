@@ -23,8 +23,8 @@ app.get("/:id", (req, res) => {
 
 app.post("/", (req, res) => {
   const { body } = req;
-  const len = items.push({ id: items.length, ...body });
-  res.json({ id: len - 1, ...body });
+  const len = items.push({ id: items.length, body });
+  res.json({ id: len - 1, body });
 });
 
 app.put("/:id", (req, res) => {
@@ -33,7 +33,7 @@ app.put("/:id", (req, res) => {
   const index = items.findIndex((i) => i.id == req.params.id);
 
   if (index >= 0) {
-    items[index].value = body.value;
+    items[index].body = body;
     res.json(items[index]);
   } else {
     res.status(404).json({ message: "Not found" });
